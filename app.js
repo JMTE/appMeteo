@@ -1,4 +1,5 @@
-const { leerInput, inquirerMenu, repetirMenu } = require("./ayuda/inquirer")
+const { leerInput, inquirerMenu, repetirMenu } = require("./ayuda/inquirer");
+const Busquedas = require("./Modelos/busquedas");
 
 require("colors");
 
@@ -8,7 +9,7 @@ const main= async()=>{
 
 let opcion;
 let salir=false;
-
+const busquedas=new Busquedas();
 
 
 do{
@@ -19,11 +20,23 @@ do{
 
     case 1:
 
-    console.log("Aqui la ciudad");
+    //mostrar mensaje
+    //buscar los lugares
+    //seleccionar el lugar
+    //Meteorologia del lugar
+    //Mostrar resultados
 
-    const ciudad=await leerInput("Dame la ciudad a consultar: \n");
+
+    const ciudad=await leerInput("CIUDAD:".green);
 
     console.log(ciudad);
+    console.log("\n INFORMACIóN DE CIUDAD: ".red.bold);
+    console.log("Latitud: ");
+    console.log("Longitud: ");
+    console.log("Temperatura: ");
+    console.log("Temperatura Mínima: ");
+    console.log("Temperatura Máxima: ");
+
     
     
 
@@ -47,6 +60,11 @@ do{
 await repetirMenu();
 
 }while (!salir);
+
+
+
+
+
 
 
 
