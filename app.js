@@ -1,4 +1,4 @@
-const { leerInput } = require("./ayuda/inquirer")
+const { leerInput, inquirerMenu, repetirMenu } = require("./ayuda/inquirer")
 
 require("colors");
 
@@ -6,9 +6,49 @@ require("colors");
 const main= async()=>{
 
 
-const texto=await leerInput("hola");
+let opcion;
+let salir=false;
 
-console.log(texto);
+
+
+do{
+   opcion= await inquirerMenu();
+    
+    
+    switch (opcion) {
+
+    case 1:
+
+    console.log("Aqui la ciudad");
+
+    const ciudad=await leerInput("Dame la ciudad a consultar: \n");
+
+    console.log(ciudad);
+    
+    
+
+    break;
+
+    case 2:
+
+    console.log("Aqui el historial");
+
+    break;
+
+    case 3:
+    salir=true;
+    break;
+
+
+
+
+}
+
+await repetirMenu();
+
+}while (!salir);
+
+
 
 }
 
