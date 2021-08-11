@@ -29,6 +29,11 @@ do{
 
     const ciudad=await leerInput("CIUDAD:".green);
 
+    await busquedas.ciudad(ciudad);
+
+
+    //Node no conoce el fetch por lo cual hay que instalar un paquete de terceros 
+
     console.log(ciudad);
     console.log("\n INFORMACIóN DE CIUDAD: ".red.bold);
     console.log("Latitud: ");

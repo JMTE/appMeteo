@@ -1,13 +1,11 @@
-const { createPromptModule } = require("inquirer");
 
+const axios = require('axios');
 
 class Busquedas{
 
 
 
-    historial=[];
-
-
+    historial=["Madrid", "San José", "Barcelona"];
     constructor(){
 
         //leer db si existe
@@ -17,7 +15,9 @@ class Busquedas{
 
         //peticion http
 
-        console.log(lugar);
+        const respuesta=await axios.get("https://reqres.in/api/users?page=2")
+
+        console.log(respuesta.data);
 
         return []; //devuelve todas las ciudades que se corresponden con lugar
     }
