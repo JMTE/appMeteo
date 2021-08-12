@@ -36,7 +36,15 @@ do{
     const ciudades = await busquedas.ciudad(ciudad);
 
     const idSeleccionar=await listarCiudades(ciudades);
+
+    //El metodo find se utilizar en js para buscar informacion en arrays
     const ciudadSeleccionada= ciudades.find(ciu=> ciu.id===idSeleccionar);
+
+    //Clima
+
+    const clima=await busquedas.climaLugar(ciudadSeleccionada.lat,ciudadSeleccionada.lon)
+
+    console.log(clima);
    
 
    
@@ -47,11 +55,12 @@ do{
     console.log(ciudad);
     console.log("\n INFORMACIóN DE CIUDAD: ".red.bold);
     console.log("Ciudad :", ciudadSeleccionada.nombre);
-    console.log("Latitud: ", ciudadSeleccionada.latitud);
-    console.log("Longitud: ", ciudadSeleccionada.longitud);
-    console.log("Temperatura: ");
-    console.log("Temperatura Mínima: ");
-    console.log("Temperatura Máxima: ");
+    console.log("Latitud: ", ciudadSeleccionada.lat);
+    console.log("Longitud: ", ciudadSeleccionada.lon);
+    console.log("Temperatura: ", clima.temperatura);
+    console.log("Temperatura Mínima: ", clima.temp_minima);
+    console.log("Temperatura Máxima: ", clima.temp_maxima);
+    console.log("Descripción del climatológica: ", clima.descripcion );
 
     
     

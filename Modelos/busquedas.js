@@ -23,6 +23,21 @@ class Busquedas{
         }
     }
 
+    get paramsMeteo(){
+
+        //Introducimos nuestra variabla de entorno
+
+        return{
+
+            appid:process.env.OPENWEATHER_KEY || "",
+           units:'metric',
+           lang:'es'
+        }
+
+           
+
+    }
+
     async ciudad (lugar=""){
         try{
         //peticion http
@@ -41,8 +56,8 @@ class Busquedas{
 
                 id:lugar.id,
                 nombre:lugar.place_name,
-                latitud:lugar.center[1],
-                longitud:lugar.center[0]
+                lat:lugar.center[1],
+                lon:lugar.center[0]
 
 
             }));
@@ -55,6 +70,41 @@ class Busquedas{
         }
 
         
+    }
+
+
+    async climaLugar(lat,lon){
+
+        try{
+
+            //instancia de axios.create
+
+            const instance=axios.create({
+
+                baseURL:`https://api.openweathermap.org/data/2.5/weather`,
+                params:{ ...this.paramsMeteo,lat,lon}
+            });
+
+            //con la respuesta extraemos la informacion que se encuentra en la data
+
+            const respuesta= await instance.get();
+
+          
+           const {weather, main}=respuesta.data;
+
+            return {
+
+             descripcion: weather[0].description,
+              temperatura: main.temp,
+              temp_maxima: main.temp_max,
+              temp_minima: main.temp_min
+             }
+        
+
+        }catch(error){
+
+            console.log("No se ha encontrado la ciudad");
+        }
     }
 
 
