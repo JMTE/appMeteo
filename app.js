@@ -1,7 +1,7 @@
 require('dotenv').config() //configuracion de las variables de entorno
 
 
-const { leerInput, inquirerMenu, repetirMenu } = require("./ayuda/inquirer");
+const { leerInput, inquirerMenu, repetirMenu, listarCiudades } = require("./ayuda/inquirer");
 const Busquedas = require("./Modelos/busquedas");
 
 require("colors");
@@ -33,15 +33,22 @@ do{
 
     const ciudad=await leerInput("CIUDAD:".green);
 
-    await busquedas.ciudad(ciudad);
+    const ciudades = await busquedas.ciudad(ciudad);
+
+    const idSeleccionar=await listarCiudades(ciudades);
+    const ciudadSeleccionada= ciudades.find(ciu=> ciu.id===idSeleccionar);
+   
+
+   
 
 
     //Node no conoce el fetch por lo cual hay que instalar un paquete de terceros 
 
     console.log(ciudad);
     console.log("\n INFORMACIóN DE CIUDAD: ".red.bold);
-    console.log("Latitud: ");
-    console.log("Longitud: ");
+    console.log("Ciudad :", ciudadSeleccionada.nombre);
+    console.log("Latitud: ", ciudadSeleccionada.latitud);
+    console.log("Longitud: ", ciudadSeleccionada.longitud);
     console.log("Temperatura: ");
     console.log("Temperatura Mínima: ");
     console.log("Temperatura Máxima: ");
