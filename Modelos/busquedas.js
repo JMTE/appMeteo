@@ -15,7 +15,7 @@ class Busquedas{
 
         return {
 
-            'access_token':'pk.eyJ1IjoidmVyc3Rha2VuIiwiYSI6ImNrczkwajdudTBsdmYycXBmaGlzemsyZHkifQ.muwEN-gxanQwxixQgX9pYg',
+            'access_token':process.env.MAPBOX_KEY || "",
                 'limit': 5,
                 'language':'es'
 

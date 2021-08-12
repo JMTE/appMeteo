@@ -1,7 +1,11 @@
+require('dotenv').config() //configuracion de las variables de entorno
+
+
 const { leerInput, inquirerMenu, repetirMenu } = require("./ayuda/inquirer");
 const Busquedas = require("./Modelos/busquedas");
 
 require("colors");
+
 
 
 const main= async()=>{
