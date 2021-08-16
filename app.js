@@ -37,9 +37,18 @@ do{
 
     const idSeleccionar=await listarCiudades(ciudades);
 
+    if (idSeleccionar==="0"){ //Si cuando escribimos una ciudad queremos volver al menu principal
+
+        continue; //sigue el ciclo sin error
+
+
+    }
     //El metodo find se utilizar en js para buscar informacion en arrays
     const ciudadSeleccionada= ciudades.find(ciu=> ciu.id===idSeleccionar);
 
+   
+
+    
     //Clima
 
     const clima=await busquedas.climaLugar(ciudadSeleccionada.lat,ciudadSeleccionada.lon)
@@ -63,13 +72,23 @@ do{
     console.log("Descripción del climatológica: ", clima.descripcion );
 
     
-    
+     //Guardar en DB
+
+     busquedas.agregarHistorial(ciudadSeleccionada.nombre);
+
+     
+
+     
 
     break;
 
     case 2:
+    busquedas.historial.forEach((lugar,index)=>{
+        const i=`${index+1}. `.green
+        console.log(`${i} ${lugar}`);
 
-    console.log("Aqui el historial");
+    })
+   
 
     break;
 
