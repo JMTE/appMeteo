@@ -16,6 +16,8 @@ class Busquedas{
     constructor(){
 
         //leer db si existe
+
+        this.leerDB();
     }
 
     get paramsMapbox(){ //Getter
@@ -43,6 +45,18 @@ class Busquedas{
 
            
 
+    }
+
+    get historialMayusculas(){
+
+        this.historial=this.historial.map(lugar=>{
+
+            let palabras= lugar.split(' ');
+            palabras=palabras.map(p=> p[0].toUpperCase() + p.substring(1));
+            return palabras.join(' ');
+        })
+
+        return this.historial;
     }
 
     async ciudad (lugar=""){
@@ -124,7 +138,7 @@ class Busquedas{
 
             return;
         }else{
-
+            this.historial=this.historial.splice(0,5); //Hacemos el historial de solo 6 posiciones
             this.historial.unshift(lugar);
             //Grabar en un archivo de texto
     
@@ -152,6 +166,21 @@ class Busquedas{
     }
 
     leerDB(){
+
+        //Comprobar que la base de datos existe
+        //Si existe, cargar la informacion
+
+        if (!fs.existsSync(this.databasePath)){
+
+            return ;
+    
+        }
+    
+        const info=fs.readFileSync(this.databasePath, {encoding: "utf-8"});
+       const data=JSON.parse(info);
+    
+       this.historial=data.historial;
+       
 
 
     }

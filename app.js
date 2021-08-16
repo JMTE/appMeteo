@@ -53,7 +53,7 @@ do{
 
     const clima=await busquedas.climaLugar(ciudadSeleccionada.lat,ciudadSeleccionada.lon)
 
-    console.log(clima);
+    
    
 
    
@@ -61,7 +61,7 @@ do{
 
     //Node no conoce el fetch por lo cual hay que instalar un paquete de terceros 
 
-    console.log(ciudad);
+   
     console.log("\n INFORMACIóN DE CIUDAD: ".red.bold);
     console.log("Ciudad :", ciudadSeleccionada.nombre);
     console.log("Latitud: ", ciudadSeleccionada.lat);
@@ -83,7 +83,8 @@ do{
     break;
 
     case 2:
-    busquedas.historial.forEach((lugar,index)=>{
+
+    busquedas.historialMayusculas.forEach((lugar,index)=>{
         const i=`${index+1}. `.green
         console.log(`${i} ${lugar}`);
 
