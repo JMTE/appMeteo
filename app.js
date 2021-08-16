@@ -69,7 +69,7 @@ do{
     console.log("Temperatura: ", clima.temperatura);
     console.log("Temperatura Mínima: ", clima.temp_minima);
     console.log("Temperatura Máxima: ", clima.temp_maxima);
-    console.log("Descripción del climatológica: ", clima.descripcion );
+    console.log("Descripción del climatológica: ", clima.descripcion.blue );
 
     
      //Guardar en DB
@@ -94,6 +94,8 @@ do{
     break;
 
     case 3:
+
+    console.log("\n\nGRACIAS POR UTILIZAR APPMETEO".bold.red);
     salir=true;
     break;
 
